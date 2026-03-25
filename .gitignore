@@ -1,0 +1,5 @@
+*.pdf
+.agent/
+_agents/
+tmp/
+node_modules/
