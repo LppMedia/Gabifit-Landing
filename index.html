@@ -119,10 +119,10 @@
 </header>
 <div class="divider-line"></div>
 <section class="px-4 md:px-12 py-24 bg-brand-white text-brand-black grid grid-cols-1 lg:grid-cols-2 gap-16">
-<div class="order-2 lg:order-1 grayscale brutalist-border p-2">
+<div class="order-1 lg:order-1 grayscale brutalist-border p-2">
 <img alt="Madre Real Post-Parto" class="w-full h-auto grayscale brightness-75 contrast-150" src="./asset/madre_cansada.png"/>
 </div>
-<div class="order-1 lg:order-2 flex flex-col justify-center">
+<div class="order-2 lg:order-2 flex flex-col justify-center">
 <h2 class="text-5xl md:text-8xl mb-12">EL DESAFÍO POST-EMBARAZO</h2>
 <div class="space-y-12">
 <div class="border-b-4 border-brand-black pb-4">
@@ -204,31 +204,40 @@
     @keyframes tsTextOutLeft  { from { transform:translateX(0); opacity:1; } to { transform:translateX(-50px); opacity:0; } }
     @keyframes tsTextOutRight { from { transform:translateX(0); opacity:1; } to { transform:translateX(50px); opacity:0; } }
   </style>
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
-    <!-- Left: pagination + thumbnails -->
-    <div class="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 h-full">
+    <!-- Left: pagination + thumbnails (desktop only order) -->
+    <div class="md:col-span-3 flex flex-col justify-between order-3 md:order-1">
       <div class="flex flex-row md:flex-col justify-between md:justify-start gap-4">
         <span id="ts-counter" class="text-sm opacity-60 font-mono">01 / 03</span>
         <h2 class="text-sm font-medium tracking-widest uppercase hidden md:block opacity-60" style="writing-mode:vertical-rl;transform:rotate(180deg)">Reviews</h2>
       </div>
-      <div id="ts-thumbs" class="flex gap-2 mt-8 md:mt-0"></div>
+      <div id="ts-thumbs" class="flex gap-2 mt-4 md:mt-0"></div>
     </div>
     <!-- Center: main image -->
     <div class="md:col-span-4 order-1 md:order-2">
-      <div id="ts-img-wrap" class="ts-img-wrap w-full h-[500px] md:h-[600px]">
+      <div id="ts-img-wrap" class="ts-img-wrap w-full h-[300px] md:h-[600px]">
         <img id="ts-img-current" class="ts-slide" src="" alt="" />
       </div>
     </div>
-    <!-- Right: text + navigation -->
-    <div class="md:col-span-5 flex flex-col justify-between md:pl-8 order-3 md:order-3">
-      <div class="relative overflow-hidden pt-4 md:pt-16" style="min-height:200px;">
+    <!-- Mobile-only: nav buttons right under the image -->
+    <div class="flex md:hidden items-center gap-3 order-2">
+      <button id="ts-prev-m" aria-label="Previous" class="w-12 h-12 rounded-full border-2 border-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black transition-colors duration-200 cursor-pointer" style="flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button id="ts-next-m" aria-label="Next" class="w-12 h-12 rounded-full bg-brand-neon text-brand-black flex items-center justify-center hover:opacity-90 transition-opacity duration-200 cursor-pointer" style="flex-shrink:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+    <!-- Right: text + navigation (desktop) -->
+    <div class="md:col-span-5 flex flex-col justify-between md:pl-8 order-4 md:order-3">
+      <div class="relative overflow-hidden pt-2 md:pt-16" style="min-height:160px;">
         <div id="ts-text" class="ts-text">
           <p id="ts-affil" class="text-sm font-medium opacity-60 font-mono uppercase"></p>
           <h3 id="ts-name" class="text-xl font-heading mt-1 text-brand-neon"></h3>
-          <blockquote id="ts-quote" class="mt-6 text-2xl md:text-3xl font-mono normal-case leading-snug italic opacity-90"></blockquote>
+          <blockquote id="ts-quote" class="mt-4 text-xl md:text-3xl font-mono normal-case leading-snug italic opacity-90"></blockquote>
         </div>
       </div>
-      <div class="flex items-center gap-3 mt-8 md:mt-0">
+      <div class="hidden md:flex items-center gap-3 mt-0">
         <button id="ts-prev" aria-label="Previous" class="w-12 h-12 rounded-full border-2 border-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black transition-colors duration-200 cursor-pointer" style="flex-shrink:0;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -338,12 +347,16 @@
     }, 550);
   }
 
-  document.getElementById('ts-next').addEventListener('click', function() {
-    goTo((current + 1) % reviews.length, 'right');
-  });
-  document.getElementById('ts-prev').addEventListener('click', function() {
-    goTo((current - 1 + reviews.length) % reviews.length, 'left');
-  });
+  function bindNav(nextId, prevId) {
+    document.getElementById(nextId).addEventListener('click', function() {
+      goTo((current + 1) % reviews.length, 'right');
+    });
+    document.getElementById(prevId).addEventListener('click', function() {
+      goTo((current - 1 + reviews.length) % reviews.length, 'left');
+    });
+  }
+  bindNav('ts-next', 'ts-prev');
+  bindNav('ts-next-m', 'ts-prev-m');
 
   // Initialize
   imgCurrent.src = reviews[0].imageSrc;
