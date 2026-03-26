@@ -182,44 +182,180 @@
 <h2 class="text-6xl md:text-9xl mb-4">HISTORIAS DE</h2>
 <h2 class="text-6xl md:text-9xl text-brand-neon italic">MADRES REALES</h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-<div class="bg-brand-black border-4 border-brand-white p-8 brutalist-shadow-neon flex flex-col justify-between">
-<div>
-<div class="w-20 h-20 bg-brand-white mb-6 grayscale overflow-hidden brutalist-border">
-<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXQvfN5UTQw8vww7n1OdXZLSytS8TpLny8uXKk1VPjDhlkYUheJJ2rMpValgV66U9TPyzAmRaOW_J7AsBw0ZPAJXY74ev0c4PthkjvqjXOCq6sRJA7tXSOFtu7pRZF3Opy6to1Q64K-O8l14pZ8rwi1RMf9kd1HBfJBPNK5i2OV2V9loDia8JyZhsj2fRBgdGcChI5EVyadNuFjAD7-VwXXmn5gJ1QM6hITBq4xTWwizI7gVBrMHzDPxIxBPLQyUV5RON_jqIedT7y"/>
+<!-- Testimonial Slider -->
+<div id="tslider" class="relative w-full min-h-[750px] md:min-h-[700px] overflow-hidden p-0 md:p-4">
+  <style>
+    #tslider .ts-img-wrap { position:relative; overflow:hidden; border-radius:12px; background: rgba(255,255,255,0.03); }
+    #tslider .ts-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:12px; }
+    #tslider .ts-slide.ts-enter-down  { animation: tsSlideInDown  0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-slide.ts-enter-up    { animation: tsSlideInUp    0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-slide.ts-exit-up     { animation: tsSlideOutUp   0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-slide.ts-exit-down   { animation: tsSlideOutDown 0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-text.ts-text-enter-right { animation: tsTextInRight  0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-text.ts-text-enter-left  { animation: tsTextInLeft   0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-text.ts-text-exit-left   { animation: tsTextOutLeft  0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    #tslider .ts-text.ts-text-exit-right  { animation: tsTextOutRight 0.6s cubic-bezier(.4,0,.2,1) forwards; }
+    @keyframes tsSlideInDown  { from { transform:translateY(100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    @keyframes tsSlideInUp    { from { transform:translateY(-100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    @keyframes tsSlideOutUp   { from { transform:translateY(0); opacity:1; } to { transform:translateY(-100%); opacity:0; } }
+    @keyframes tsSlideOutDown { from { transform:translateY(0); opacity:1; } to { transform:translateY(100%); opacity:0; } }
+    @keyframes tsTextInRight  { from { transform:translateX(50px); opacity:0; } to { transform:translateX(0); opacity:1; } }
+    @keyframes tsTextInLeft   { from { transform:translateX(-50px); opacity:0; } to { transform:translateX(0); opacity:1; } }
+    @keyframes tsTextOutLeft  { from { transform:translateX(0); opacity:1; } to { transform:translateX(-50px); opacity:0; } }
+    @keyframes tsTextOutRight { from { transform:translateX(0); opacity:1; } to { transform:translateX(50px); opacity:0; } }
+  </style>
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
+    <!-- Left: pagination + thumbnails -->
+    <div class="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
+      <div class="flex flex-row md:flex-col justify-between md:justify-start gap-4">
+        <span id="ts-counter" class="text-sm opacity-60 font-mono">01 / 03</span>
+        <h2 class="text-sm font-medium tracking-widest uppercase hidden md:block opacity-60" style="writing-mode:vertical-rl;transform:rotate(180deg)">Reviews</h2>
+      </div>
+      <div id="ts-thumbs" class="flex gap-2 mt-8 md:mt-0"></div>
+    </div>
+    <!-- Center: main image -->
+    <div class="md:col-span-4 order-1 md:order-2">
+      <div id="ts-img-wrap" class="ts-img-wrap w-full h-[500px] md:h-[600px]">
+        <img id="ts-img-current" class="ts-slide" src="" alt="" />
+      </div>
+    </div>
+    <!-- Right: text + navigation -->
+    <div class="md:col-span-5 flex flex-col justify-between md:pl-8 order-3 md:order-3">
+      <div class="relative overflow-hidden pt-4 md:pt-16" style="min-height:200px;">
+        <div id="ts-text" class="ts-text">
+          <p id="ts-affil" class="text-sm font-medium opacity-60 font-mono uppercase"></p>
+          <h3 id="ts-name" class="text-xl font-heading mt-1 text-brand-neon"></h3>
+          <blockquote id="ts-quote" class="mt-6 text-2xl md:text-3xl font-mono normal-case leading-snug italic opacity-90"></blockquote>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 mt-8 md:mt-0">
+        <button id="ts-prev" aria-label="Previous" class="w-12 h-12 rounded-full border-2 border-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black transition-colors duration-200 cursor-pointer" style="flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button id="ts-next" aria-label="Next" class="w-12 h-12 rounded-full bg-brand-neon text-brand-black flex items-center justify-center hover:opacity-90 transition-opacity duration-200 cursor-pointer" style="flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-<p class="text-xl mb-8 normal-case italic font-mono leading-snug">"POR FIN ENTIENDO CÓMO RECUPERAR MI CUERPO DESPUÉS DE MI SEGUNDO BEBÉ. LA COMUNIDAD ES MI MOTOR DIARIO."</p>
-</div>
-<div>
-<span class="block text-brand-neon font-heading text-2xl">CARLA M.</span>
-<span class="block text-sm font-mono opacity-60">MADRE DE 2</span>
-</div>
-</div>
-<div class="bg-brand-black border-4 border-brand-white p-8 brutalist-shadow-white flex flex-col justify-between md:-translate-y-6">
-<div>
-<div class="w-20 h-20 bg-brand-white mb-6 grayscale overflow-hidden brutalist-border">
-<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2dcUcllgoXK5Od1ulcF9O6J5FEUTHVhdmDPEC5biiyZIDJ_uCwwEnqeZGiagnO3fRClPn6ot2DwEUUoGopFvrhD_CjU7UeRQZnNpapl9eDSK2Hq5xcmYHadGAY3NOiChhAIiJ9lQVX6rX2RE4YuutW9NtoN072GhzG2ScG92qGK_NUqD4jvPySliOSSh01PC7BlAfqMNTW-enlkgaf0q4gJkcjjDwC_RSBR124dAiTE7dxzKwgBy7TWKH7N52NOSDhH05OzC8E-Nq"/>
-</div>
-<p class="text-xl mb-8 normal-case italic font-mono leading-snug">"GABI ENTIENDE LO QUE PASAMOS PORQUE ELLA TAMBIÉN ES MAMÁ. CIENCIA APLICADA A NUESTRO NUEVO CUERPO."</p>
-</div>
-<div>
-<span class="block text-brand-neon font-heading text-2xl">LAURA S.</span>
-<span class="block text-sm font-mono opacity-60">MAMÁ DE UN TODDLER</span>
-</div>
-</div>
-<div class="bg-brand-black border-4 border-brand-white p-8 brutalist-shadow-neon flex flex-col justify-between">
-<div>
-<div class="w-20 h-20 bg-brand-white mb-6 grayscale overflow-hidden brutalist-border">
-<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsv-8MApx55iwCAI3j7jt7vaS9QrQhDl6PdNf1-lWdBEL-cNgkTmD55kn5SO2n6msERflz2c45mHW-m7LpFsptUJlgNb6_ySvcRlV-LxMfYy5wsNsvF35iPlSclyS6eb_PCshXUH-DNvE86Vod-Q34MIsNTv0-Cv0TlzSoaUuUUrZlNSzrNBGJ9RmyVjGSnpXOUcFeZMjtDXGc3KJR5RmJ0EencmjGR_fkMe0ZUju07MeE-qB5p3EvMlGrapeBkURimbtBjDBE0wap"/>
-</div>
-<p class="text-xl mb-8 normal-case italic font-mono leading-snug">"DEJÉ DE CONTAR CALORÍAS Y EMPECÉ A SANAR MI METABOLISMO POST-PARTO. ME SIENTO MEJOR QUE A LOS 20."</p>
-</div>
-<div>
-<span class="block text-brand-neon font-heading text-2xl">MARINA V.</span>
-<span class="block text-sm font-mono opacity-60">MADRE PRIMERIZA</span>
-</div>
-</div>
-</div>
+<script>
+(function() {
+  var reviews = [
+    {
+      name: "CARLA M.",
+      affiliation: "MADRE DE 2",
+      quote: "\u201cPOR FIN ENTIENDO C\u00d3MO RECUPERAR MI CUERPO DESPU\u00c9S DE MI SEGUNDO BEB\u00c9. LA COMUNIDAD ES MI MOTOR DIARIO.\u201d",
+      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183057_fbabox.png",
+      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183057_fbabox.png"
+    },
+    {
+      name: "LAURA S.",
+      affiliation: "MAM\u00c1 DE UN TODDLER",
+      quote: "\u201cGABI ENTIENDE LO QUE PASAMOS PORQUE ELLA TAMBI\u00c9N ES MAM\u00c1. CIENCIA APLICADA A NUESTRO NUEVO CUERPO.\u201d",
+      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183035_aoqru8.png",
+      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183035_aoqru8.png"
+    },
+    {
+      name: "MARINA V.",
+      affiliation: "MADRE PRIMERIZA",
+      quote: "\u201cDEJ\u00c9 DE CONTAR CALOR\u00cdAS Y EMPEC\u00c9 A SANAR MI METABOLISMO POST-PARTO. ME SIENTO MEJOR QUE A LOS 20.\u201d",
+      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183046_otbc8e.png",
+      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183046_otbc8e.png"
+    }
+  ];
+
+  var current = 0;
+  var animating = false;
+
+  var imgCurrent = document.getElementById('ts-img-current');
+  var textEl = document.getElementById('ts-text');
+  var affilEl = document.getElementById('ts-affil');
+  var nameEl = document.getElementById('ts-name');
+  var quoteEl = document.getElementById('ts-quote');
+  var counterEl = document.getElementById('ts-counter');
+  var thumbsEl = document.getElementById('ts-thumbs');
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function renderThumbs() {
+    thumbsEl.innerHTML = '';
+    for (var i = 0; i < reviews.length; i++) {
+      if (i === current) continue;
+      (function(idx) {
+        var btn = document.createElement('button');
+        btn.style.cssText = 'overflow:hidden;border-radius:6px;width:64px;height:80px;opacity:0.65;transition:opacity 0.3s;flex-shrink:0;border:none;padding:0;cursor:pointer;';
+        btn.setAttribute('aria-label', 'Ver reseña de ' + reviews[idx].name);
+        btn.onmouseenter = function(){ this.style.opacity='1'; };
+        btn.onmouseleave = function(){ this.style.opacity='0.65'; };
+        var img = document.createElement('img');
+        img.src = reviews[idx].thumbnailSrc;
+        img.alt = reviews[idx].name;
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top;';
+        btn.appendChild(img);
+        btn.addEventListener('click', function(){ goTo(idx, idx > current ? 'right' : 'left'); });
+        thumbsEl.appendChild(btn);
+      })(i);
+    }
+  }
+
+  function goTo(next, direction) {
+    if (animating || next === current) return;
+    animating = true;
+
+    var exitImgClass = direction === 'right' ? 'ts-exit-up' : 'ts-exit-down';
+    var enterImgClass = direction === 'right' ? 'ts-enter-down' : 'ts-enter-up';
+    var exitTextClass = direction === 'right' ? 'ts-text-exit-left' : 'ts-text-exit-right';
+    var enterTextClass = direction === 'right' ? 'ts-text-enter-right' : 'ts-text-enter-left';
+
+    // Animate out current image
+    imgCurrent.classList.add(exitImgClass);
+    textEl.classList.add(exitTextClass);
+
+    setTimeout(function() {
+      // Swap data
+      current = next;
+      imgCurrent.src = reviews[current].imageSrc;
+      imgCurrent.alt = reviews[current].name;
+      affilEl.textContent = reviews[current].affiliation;
+      nameEl.textContent = reviews[current].name;
+      quoteEl.textContent = reviews[current].quote;
+      counterEl.textContent = pad(current + 1) + ' / ' + pad(reviews.length);
+
+      // Remove exit, add enter
+      imgCurrent.classList.remove(exitImgClass);
+      textEl.classList.remove(exitTextClass);
+      imgCurrent.classList.add(enterImgClass);
+      textEl.classList.add(enterTextClass);
+
+      renderThumbs();
+
+      setTimeout(function() {
+        imgCurrent.classList.remove(enterImgClass);
+        textEl.classList.remove(enterTextClass);
+        animating = false;
+      }, 650);
+    }, 550);
+  }
+
+  document.getElementById('ts-next').addEventListener('click', function() {
+    goTo((current + 1) % reviews.length, 'right');
+  });
+  document.getElementById('ts-prev').addEventListener('click', function() {
+    goTo((current - 1 + reviews.length) % reviews.length, 'left');
+  });
+
+  // Initialize
+  imgCurrent.src = reviews[0].imageSrc;
+  imgCurrent.alt = reviews[0].name;
+  imgCurrent.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:12px;';
+  affilEl.textContent = reviews[0].affiliation;
+  nameEl.textContent = reviews[0].name;
+  quoteEl.textContent = reviews[0].quote;
+  counterEl.textContent = '01 / ' + pad(reviews.length);
+  renderThumbs();
+})();
+</script>
 </section>
 <section class="py-24 border-y-8 border-brand-white" id="pricing">
 <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
