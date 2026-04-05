@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mommy Garden Brunch — GabiFit</title>
+<meta name="description" content="Un espacio íntimo diseñado para que mamá vuelva a sí misma. Bienestar, conexión y comunidad. Cupos muy limitados."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+/* ── Variables ── */
+:root {
+  --beige:        #F5F0E8;
+  --beige-dark:   #EDE5D5;
+  --beige-light:  #FAF7F2;
+  --lilac:        #C4C0E0;
+  --lilac-dark:   #9F99CC;
+  --lilac-light:  #E2DFEF;
+  --yellow:       #F5C200;
+  --yellow-dark:  #D4A800;
+  --yellow-light: #FFF3B0;
+  --navy:         #1A1B2E;
+  --navy-mid:     #2E3050;
+  --white:        #FFFFFF;
+  --text:         #1A1B2E;
+  --text-mid:     #4A4B5E;
+  --text-light:   #7A7B8E;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --radius-sm:  10px;
+  --radius-md:  20px;
+  --radius-lg:  32px;
+  --radius-xl:  48px;
+  --shadow-sm:  0 2px 12px rgba(26,27,46,0.06);
+  --shadow-md:  0 4px 24px rgba(26,27,46,0.10);
+  --shadow-lg:  0 12px 48px rgba(26,27,46,0.14);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background-color: var(--beige); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a  { text-decoration: none; color: inherit; }
+.container { width: 100%; max-width: 1140px; margin-inline: auto; padding-inline: 1.5rem; }
+.label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 0.6rem; }
+.label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--yellow); border-radius: 99px; }
+.section-title { font-family: var(--font-heading); font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1.15; color: var(--navy); }
+.section-title em { font-style: italic; color: var(--lilac-dark); }
+.section-body { font-size: 1.05rem; color: var(--text-mid); line-height: 1.75; margin-top: 1rem; max-width: 540px; }
+.pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 1rem; border-radius: 99px; font-size: 0.78rem; font-weight: 600; }
+.pill--yellow { background: var(--yellow); color: var(--navy); }
+.pill--lilac  { background: var(--lilac-light); color: var(--lilac-dark); }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; padding: 0.9rem 2rem; border-radius: 99px; cursor: pointer; transition: all 0.22s ease; border: none; white-space: nowrap; }
+.btn-yellow { background: var(--yellow); color: var(--navy); box-shadow: 0 4px 20px rgba(245,194,0,0.35); }
+.btn-yellow:hover { background: var(--yellow-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(245,194,0,0.45); }
+.btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+.btn-outline:hover { background: var(--navy); color: var(--white); }
+.btn-lg { padding: 1.1rem 2.5rem; font-size: 1.05rem; }
+
+/* NAVBAR */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 1rem 0; transition: background 0.35s, box-shadow 0.35s, padding 0.35s; }
+.navbar.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(16px); box-shadow: 0 2px 24px rgba(26,27,46,0.08); padding: 0.65rem 0; }
+.navbar__inner { display: flex; align-items: center; justify-content: space-between; }
+.navbar__logo img { height: 80px; width: auto; }
+.navbar__cta { display: none; }
+@media (min-width: 560px) { .navbar__cta { display: inline-flex; } }
+
+/* HERO */
+.hero { min-height: 100svh; display: flex; align-items: center; padding-top: 5rem; background: var(--beige); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; border-radius: 50%; pointer-events: none; width: 500px; height: 500px; background: radial-gradient(circle, rgba(196,192,224,0.35) 0%, transparent 70%); top: -100px; right: -100px; }
+.hero::after { content: ''; position: absolute; border-radius: 50%; pointer-events: none; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,194,0,0.15) 0%, transparent 70%); bottom: -80px; left: -80px; }
+.hero__inner { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; padding-block: 5rem; position: relative; z-index: 2; }
+.hero__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.hero__title { font-family: var(--font-heading); font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.08; color: var(--navy); margin-bottom: 1.25rem; }
+.hero__title .highlight { font-style: italic; color: var(--lilac-dark); position: relative; display: inline-block; }
+.hero__title .highlight::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 6px; background: var(--yellow); border-radius: 99px; z-index: -1; opacity: 0.6; }
+.hero__sub { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-mid); line-height: 1.75; max-width: 480px; margin-bottom: 2rem; }
+.hero__meta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
+.hero__meta-chip { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 500; color: var(--text-mid); background: var(--white); border: 1px solid rgba(26,27,46,0.08); padding: 0.45rem 1rem; border-radius: 99px; box-shadow: var(--shadow-sm); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center; }
+.hero__visual { display: flex; justify-content: center; align-items: center; }
+.hero__img-frame { position: relative; width: 340px; }
+.hero__img-frame::before { content: ''; position: absolute; inset: -12px -12px 12px 12px; background: var(--lilac); border-radius: var(--radius-xl); z-index: 0; }
+.hero__img-frame::after { content: ''; position: absolute; inset: 12px -12px -12px 12px; background: var(--yellow); border-radius: var(--radius-xl); z-index: 0; }
+.hero__img { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); }
+.hero__badge { position: absolute; z-index: 2; bottom: 2.5rem; left: -2rem; background: var(--white); border-radius: var(--radius-md); padding: 0.85rem 1.25rem; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.65rem; min-width: 180px; }
+.hero__badge-icon { font-size: 1.5rem; flex-shrink: 0; }
+.hero__badge-text strong { display: block; font-size: 0.85rem; font-weight: 700; color: var(--navy); }
+.hero__badge-text span { font-size: 0.75rem; color: var(--text-light); }
+@media (min-width: 820px) { .hero__inner { grid-template-columns: 1fr 1fr; } .hero__img-frame { width: 400px; } }
+
+/* WHY */
+.why { padding-block: 6rem; background: var(--navy); position: relative; overflow: hidden; }
+.why::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(196,192,224,0.12) 0%, transparent 60%); top: -200px; right: -150px; pointer-events: none; }
+.why__inner { display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center; }
+.why .label { color: var(--lilac); }
+.why .section-title { color: var(--white); }
+.why .section-title em { color: var(--yellow); }
+.why__body { color: rgba(255,255,255,0.72); font-size: 1.05rem; line-height: 1.8; margin-top: 1rem; }
+.why__checks { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.why__check { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.5; }
+.why__check-icon { width: 26px; height: 26px; background: var(--yellow); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.why__quote { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--yellow); border-radius: var(--radius-md); padding: 2rem; }
+.why__quote-text { font-family: var(--font-heading); font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-style: italic; color: var(--white); line-height: 1.45; margin-bottom: 1.25rem; }
+.why__quote-author { display: flex; align-items: center; gap: 0.85rem; }
+.why__quote-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid var(--yellow); }
+.why__quote-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+.why__quote-role { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+@media (min-width: 820px) { .why__inner { grid-template-columns: 1fr 1fr; } }
+
+/* CAROUSEL / SPEAKERS */
+.speakers { padding-block: 6rem; background: var(--beige); }
+.speakers__header { text-align: center; margin-bottom: 4rem; }
+.carousel { position: relative; background: var(--white); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); overflow: hidden; min-height: 520px; }
+.carousel__slides { display: flex; transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1); height: 100%; }
+.carousel__slide { display: grid; grid-template-columns: 1fr; flex-shrink: 0; width: 100%; }
+@media (min-width: 768px) { .carousel__slide { grid-template-columns: 1fr 1fr; } }
+.slide__info { padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.25rem; order: 2; }
+@media (min-width: 768px) { .slide__info { order: 1; padding: 4rem 3.5rem; } }
+.slide__counter { font-family: var(--font-heading); font-size: 0.85rem; color: var(--text-light); letter-spacing: 0.1em; }
+.slide__counter strong { color: var(--navy); font-size: 1.1rem; }
+.slide__name { font-family: var(--font-heading); font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.15; color: var(--navy); }
+.slide__specialty { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; }
+.slide__specialty-tag { font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.85rem; border-radius: 99px; background: var(--yellow-light); color: var(--navy); }
+.slide__bio { font-size: 0.97rem; color: var(--text-mid); line-height: 1.75; }
+.slide__quote { font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; color: var(--lilac-dark); border-left: 3px solid var(--yellow); padding-left: 1rem; line-height: 1.55; }
+.slide__nav { display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem; }
+@media (max-width: 767px) { .slide__nav { order: -1; margin-top: 0; margin-bottom: 0.25rem; } }
+.slide__nav-btn { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--navy); background: transparent; color: var(--navy); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.2s; flex-shrink: 0; }
+.slide__nav-btn:hover { background: var(--navy); color: var(--white); transform: scale(1.05); }
+.slide__nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.slide__dots { display: flex; gap: 0.4rem; align-items: center; }
+.slide__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--beige-dark); cursor: pointer; transition: all 0.25s; border: none; }
+.slide__dot.active { width: 22px; border-radius: 99px; background: var(--yellow); }
+.slide__photo { position: relative; overflow: hidden; order: 1; min-height: 300px; }
+@media (min-width: 768px) { .slide__photo { order: 2; min-height: 520px; } }
+.slide__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.slide__photo-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(196,192,224,0.25) 0%, transparent 60%); }
+.slide__photo-tag { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--yellow); color: var(--navy); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border-radius: 99px; }
+
+/* EXPERIENCE */
+.experience { padding-block: 6rem; background: var(--beige-light); }
+.experience__inner { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center; }
+@media (min-width: 820px) { .experience__inner { grid-template-columns: 1fr 1fr; } }
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.exp-card { background: var(--white); border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(26,27,46,0.05); transition: transform 0.2s, box-shadow 0.2s; }
+.exp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.exp-card:first-child { grid-column: span 2; }
+.exp-card__icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.exp-card__title { font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.35rem; }
+.exp-card__desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.55; }
+.exp-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.exp-mosaic__item { border-radius: var(--radius-lg); overflow: hidden; background: var(--beige-dark); height: 175px; }
+.exp-mosaic__item:nth-child(1), .exp-mosaic__item:nth-child(6) { grid-column: span 2; height: 255px; }
+.exp-mosaic__item img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+.exp-mosaic__item:hover img { transform: scale(1.04); }
+
+/* DRESS CODE */
+.dresscode { padding-block: 6rem; background: var(--navy); position: relative; overflow: hidden; }
+.dresscode::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(196,192,224,0.1) 0%, transparent 60%); top: -150px; left: -150px; pointer-events: none; }
+.dresscode__inner { display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center; }
+@media (min-width: 820px) { .dresscode__inner { grid-template-columns: 1fr 1fr; } }
+.dresscode__content { display: flex; flex-direction: column; gap: 1.75rem; }
+.dresscode .label { color: var(--lilac); }
+.dresscode .section-title { color: var(--white); }
+.dresscode .section-title em { color: var(--yellow); }
+.dresscode__sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-top: -0.5rem; }
+.dresscode__palette { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.palette-chip { display: flex; align-items: center; gap: 0.55rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 99px; padding: 0.45rem 1rem 0.45rem 0.65rem; }
+.palette-chip__dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 2px rgba(255,255,255,0.2); }
+.palette-chip__label { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+.dresscode__rules { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 1.75rem; }
+.dresscode__rules-title { font-family: var(--font-heading); font-size: 1.1rem; color: var(--yellow); margin-bottom: 1.15rem; display: flex; align-items: center; gap: 0.5rem; }
+.dresscode__rules-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.dresscode__rule { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: rgba(255,255,255,0.75); line-height: 1.55; }
+.dresscode__rule-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; margin-top: 0.45rem; }
+.dresscode__video-wrap { display: flex; justify-content: center; align-items: center; }
+.dresscode__video-frame { position: relative; width: 100%; max-width: 480px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.55); }
+.dresscode__video { display: block; width: 100%; height: auto; border-radius: var(--radius-xl); }
+.dresscode__video-glow { position: absolute; inset: 0; border-radius: var(--radius-xl); background: linear-gradient(to bottom, transparent 60%, rgba(26,27,46,0.35) 100%); pointer-events: none; }
+
+/* TICKETS */
+.tickets { padding-block: 6rem; background: var(--beige); }
+.tickets__header { text-align: center; margin-bottom: 3.5rem; }
+.ticket-card { max-width: 520px; margin-inline: auto; background: var(--white); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); overflow: hidden; border: 2px solid rgba(245,194,0,0.3); }
+.ticket-card__top { background: var(--navy); padding: 2.5rem; text-align: center; position: relative; overflow: hidden; }
+.ticket-card__top::before { content: ''; position: absolute; width: 250px; height: 250px; background: radial-gradient(circle, rgba(196,192,224,0.15) 0%, transparent 65%); top: -80px; right: -60px; }
+.ticket-card__top::after { content: ''; position: absolute; width: 180px; height: 180px; background: radial-gradient(circle, rgba(245,194,0,0.12) 0%, transparent 65%); bottom: -50px; left: -40px; }
+.ticket-card__label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.75rem; position: relative; z-index: 1; }
+.ticket-card__price { font-family: var(--font-heading); font-size: 4rem; font-weight: 700; color: var(--white); line-height: 1; position: relative; z-index: 1; }
+.ticket-card__price sup { font-size: 1.5rem; font-weight: 400; vertical-align: top; margin-top: 0.75rem; display: inline-block; }
+.ticket-card__price-note { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.4rem; position: relative; z-index: 1; }
+.ticket-card__body { padding: 2.5rem; }
+.ticket-card__alert { display: flex; align-items: center; gap: 0.5rem; background: var(--yellow-light); border-radius: 99px; padding: 0.55rem 1.25rem; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 1.75rem; width: fit-content; margin-inline: auto; }
+.ticket-card__list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
+.ticket-card__list li { display: flex; align-items: center; gap: 0.85rem; font-size: 0.92rem; color: var(--text-mid); }
+.ticket-card__list li::before { content: ''; width: 18px; height: 18px; background: var(--yellow); border-radius: 50%; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%231A1B2E' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 12px; }
+.ticket-card__cta { width: 100%; justify-content: center; font-size: 1.05rem; }
+.ticket-card__footnote { text-align: center; font-size: 0.78rem; color: var(--text-light); margin-top: 1rem; }
+
+/* FAQ */
+.faq { padding-block: 5rem; background: var(--beige-light); }
+.faq__header { text-align: center; margin-bottom: 3rem; }
+.faq__list { max-width: 680px; margin-inline: auto; display: flex; flex-direction: column; gap: 0.65rem; }
+.faq-item { background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; border: 1px solid rgba(26,27,46,0.05); }
+.faq-item__q { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.15rem 1.5rem; background: none; border: none; font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--navy); cursor: pointer; text-align: left; transition: background 0.2s; }
+.faq-item__q:hover { background: var(--beige); }
+.faq-item__icon { width: 28px; height: 28px; background: var(--yellow); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; font-weight: 400; transition: transform 0.3s; }
+.faq-item.open .faq-item__icon { transform: rotate(45deg); }
+.faq-item__a { max-height: 0; overflow: hidden; transition: max-height 0.38s ease, padding 0.3s; font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; padding: 0 1.5rem; }
+.faq-item.open .faq-item__a { max-height: 300px; padding: 0 1.5rem 1.35rem; }
+
+/* FOOTER */
+.footer { background: var(--navy); padding-block: 3.5rem; }
+.footer__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
+.footer__logo img { height: 80px; width: auto; }
+.footer__tagline { font-family: var(--font-heading); font-style: italic; font-size: 0.95rem; color: rgba(255,255,255,0.5); }
+.footer__social { display: flex; gap: 0.75rem; }
+.footer__social a { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.07); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background 0.2s, transform 0.2s; }
+.footer__social a:hover { background: var(--yellow); color: var(--navy); transform: translateY(-3px); }
+.footer__copy { font-size: 0.76rem; color: rgba(255,255,255,0.25); }
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-card:first-child { grid-column: span 1; }
+  .hero__img-frame { width: 280px; }
+  .ticket-card__price { font-size: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#" class="navbar__logo">
+      <img src="/assets/logo-dark.png" alt="GabiFit"/>
+    </a>
+    <a href="#tickets" class="btn btn-yellow navbar__cta">
+      Reservar mi entrada →
+    </a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="inicio">
+  <div class="container hero__inner">
+    <div>
+      <div class="hero__eyebrow">
+        <span class="pill pill--lilac">🌸 Evento especial · Abril 2026</span>
+        <span class="pill pill--yellow">Cupos limitados</span>
+      </div>
+      <h1 class="hero__title">
+        Mommy<br/>
+        <span class="highlight">Garden</span><br/>
+        Brunch
+      </h1>
+      <p class="hero__sub">
+        Porque llevas demasiado tiempo poniéndote de última. Este es el
+        espacio que necesitabas — para respirar, reconectar y recordar
+        quién eres más allá de la maternidad.
+      </p>
+      <div class="hero__meta">
+        <div class="hero__meta-chip">📅 Fecha por confirmar</div>
+        <div class="hero__meta-chip">📍 Lugar por confirmar</div>
+        <div class="hero__meta-chip">🌿 4 invitadas especiales</div>
+      </div>
+      <div class="hero__actions">
+        <a href="#tickets" class="btn btn-yellow btn-lg">Quiero mi entrada →</a>
+        <a href="#invitadas" class="btn btn-outline">Conocer las invitadas</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__img-frame">
+        <img src="/assets/mama-y-coach.jpeg" alt="Gaby — GabiFit Coach" class="hero__img"/>
+        <div class="hero__badge">
+          <span class="hero__badge-icon">🌸</span>
+          <div class="hero__badge-text">
+            <strong>Cupos casi agotados</strong>
+            <span>No dejes pasar esto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARA QUIÉN ES ══ -->
+<section class="why" id="para-quien">
+  <div class="container why__inner">
+    <div>
+      <p class="label">¿Esto es para ti?</p>
+      <h2 class="section-title">Sé lo que se siente llegar al final del día <em>completamente vacía.</em></h2>
+      <p class="why__body">
+        Das todo. A tus hijos, a tu pareja, al trabajo, a todos. Y cuando
+        llega el momento de preguntarte cómo estás <em>tú</em>... ya no
+        queda nada. Ni energía, ni tiempo, ni espacio.<br/><br/>
+        Eso que sientes — que ya no eres tú misma, que te perdiste en el
+        camino de ser mamá — tiene solución. Y no empieza en el gym ni en
+        una dieta perfecta. Empieza en un espacio como este.
+      </p>
+      <div class="why__checks">
+        <div class="why__check">
+          <div class="why__check-icon">✓</div>
+          <span>Sientes que te perdiste a ti misma en la maternidad y no sabes cómo volver</span>
+        </div>
+        <div class="why__check">
+          <div class="why__check-icon">✓</div>
+          <span>Quieres cuidarte — física, mental y espiritualmente — pero no sabes por dónde empezar</span>
+        </div>
+        <div class="why__check">
+          <div class="why__check-icon">✓</div>
+          <span>Necesitas un espacio para respirar rodeada de mujeres que realmente entienden</span>
+        </div>
+        <div class="why__check">
+          <div class="why__check-icon">✓</div>
+          <span>Estás lista para priorizarte sin culpa y sin tener que explicarle nada a nadie</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="why__quote">
+        <p class="why__quote-text">
+          "Yo también fui esa mamá que ponía a todos primero y se
+          convencía de que estaba bien. Hasta que entendí que cuidarme a
+          mí <em>es</em> cuidar a mi familia. Este evento es lo que yo
+          hubiera necesitado."
+        </p>
+        <div class="why__quote-author">
+          <img src="/assets/mama-y-coach.jpeg" alt="Gaby" class="why__quote-avatar"/>
+          <div>
+            <div class="why__quote-name">Gaby — GabiFit</div>
+            <div class="why__quote-role">Fitness Coach · Mamá · Tu anfitriona</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INVITADAS — CAROUSEL ══ -->
+<section class="speakers" id="invitadas">
+  <div class="container">
+    <div class="speakers__header">
+      <p class="label">Las invitadas</p>
+      <h2 class="section-title">Cuatro mujeres. Cuatro historias reales.<br/><em>Una tarde que no olvidarás.</em></h2>
+    </div>
+    <div class="carousel" id="carousel">
+      <div class="carousel__slides" id="carousel-slides">
+
+        <!-- Slide 1: Gaby -->
+        <div class="carousel__slide">
+          <div class="slide__info">
+            <div class="slide__counter"><strong>01</strong> / 04</div>
+            <div class="slide__specialty">
+              <span class="slide__specialty-tag">Host</span>
+              <span class="slide__specialty-tag">Fitness Coach</span>
+              <span class="slide__specialty-tag">Mamá</span>
+            </div>
+            <h3 class="slide__name">Gaby</h3>
+            <p class="slide__bio">Más de 8 años transformando vidas — no solo cuerpos. Gaby sabe lo que es luchar con la culpa de "no tener tiempo", sentir que el cuerpo no responde y seguir de pie con una sonrisa. Ha acompañado a más de 200 mujeres en su proceso y conoce cada excusa, cada miedo y cada victoria pequeña que nadie celebra. Hoy crea este espacio desde su propia historia.</p>
+            <p class="slide__quote">"Entrenar me salvó. Pero fue la comunidad la que me transformó de verdad."</p>
+            <div class="slide__nav">
+              <button class="slide__nav-btn" onclick="changeSlide(-1)" id="prev-btn-0">←</button>
+              <div class="slide__dots" id="dots"></div>
+              <button class="slide__nav-btn" onclick="changeSlide(1)" id="next-btn-0">→</button>
+            </div>
+          </div>
+          <div class="slide__photo">
+            <img src="/assets/mama-y-coach.jpeg" alt="Gaby — GabiFit"/>
+            <div class="slide__photo-overlay"></div>
+            <span class="slide__photo-tag">Anfitriona</span>
+          </div>
+        </div>
+
+        <!-- Slide 2: Maríah Espinal -->
+        <div class="carousel__slide">
+          <div class="slide__info">
+            <div class="slide__counter"><strong>02</strong> / 04</div>
+            <div class="slide__specialty">
+              <span class="slide__specialty-tag">Mamá</span>
+              <span class="slide__specialty-tag">Creadora de Contenido</span>
+              <span class="slide__specialty-tag">Pastelera sin gluten</span>
+            </div>
+            <h3 class="slide__name">Maríah Espinal</h3>
+            <p class="slide__bio">Maríah no llegó a la vida saludable por una foto en Instagram. Llegó porque necesitaba sentirse bien por dentro — como mamá, como mujer, como hija de Dios. Hoy comparte ese camino con honestidad brutal: los días difíciles, las recaídas, los pequeños logros que nadie ve pero que lo cambian todo. Su historia te va a llegar al alma.</p>
+            <p class="slide__quote">"Comer diferente me cambió el cuerpo. Elegirme a mí me cambió la vida."</p>
+            <div class="slide__nav">
+              <button class="slide__nav-btn" onclick="changeSlide(-1)">←</button>
+              <div class="slide__dots"></div>
+              <button class="slide__nav-btn" onclick="changeSlide(1)">→</button>
+            </div>
+          </div>
+          <div class="slide__photo">
+            <img src="/assets/maria-espinal.jpeg" alt="Maríah Espinal"/>
+            <div class="slide__photo-overlay"></div>
+            <span class="slide__photo-tag">Invitada especial</span>
+          </div>
+        </div>
+
+        <!-- Slide 3: Lic. Himilce Cruz -->
+        <div class="carousel__slide">
+          <div class="slide__info">
+            <div class="slide__counter"><strong>03</strong> / 04</div>
+            <div class="slide__specialty">
+              <span class="slide__specialty-tag">Psicóloga Clínica</span>
+              <span class="slide__specialty-tag">Coach de Bienestar</span>
+            </div>
+            <h3 class="slide__name">Lic. Himilce Cruz</h3>
+            <p class="slide__bio">La ansiedad, el agotamiento emocional, el sentir que nada es suficiente — Himilce ha visto eso de cerca y sabe que muchas mamás lo viven en silencio. Como psicóloga clínica y coach de bienestar, acompaña a mujeres a entender que cuidar la mente no es un lujo, es una necesidad. Su charla te va a dar permiso de sentir lo que llevas tiempo callando.</p>
+            <p class="slide__quote">"No se trata de ser una supermamá. Se trata de ser una mamá entera."</p>
+            <div class="slide__nav">
+              <button class="slide__nav-btn" onclick="changeSlide(-1)">←</button>
+              <div class="slide__dots"></div>
+              <button class="slide__nav-btn" onclick="changeSlide(1)">→</button>
+            </div>
+          </div>
+          <div class="slide__photo">
+            <img src="/assets/himilce.jpeg" alt="Lic. Himilce Cruz"/>
+            <div class="slide__photo-overlay"></div>
+            <span class="slide__photo-tag">Invitada especial</span>
+          </div>
+        </div>
+
+        <!-- Slide 4: Cherlin Nicol -->
+        <div class="carousel__slide">
+          <div class="slide__info">
+            <div class="slide__counter"><strong>04</strong> / 04</div>
+            <div class="slide__specialty">
+              <span class="slide__specialty-tag">Entrenadora Personal</span>
+              <span class="slide__specialty-tag">Nutrición</span>
+              <span class="slide__specialty-tag">Suplementación</span>
+            </div>
+            <h3 class="slide__name">Cherlin Nicol</h3>
+            <p class="slide__bio">Cherlin lleva más de 5 años desmontando el mito de que ponerse en forma es cosa de genética o de vivir en el gym. Entrenadora personal, casi graduada en Nutrición y dueña de su propia tienda de suplementos — sabe exactamente qué hace falta para que los resultados lleguen y se queden. Sin extremos, sin dietas de hambre, sin excusas.</p>
+            <p class="slide__quote">"La transformación real empieza cuando dejás de tratarte como el último elemento de tu lista."</p>
+            <div class="slide__nav">
+              <button class="slide__nav-btn" onclick="changeSlide(-1)">←</button>
+              <div class="slide__dots"></div>
+              <button class="slide__nav-btn" onclick="changeSlide(1)">→</button>
+            </div>
+          </div>
+          <div class="slide__photo">
+            <img src="/assets/cherlin.jpeg" alt="Cherlin Nicol Pichardo"/>
+            <div class="slide__photo-overlay"></div>
+            <span class="slide__photo-tag">Invitada especial</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCIA ══ -->
+<section class="experience" id="experiencia">
+  <div class="container experience__inner">
+    <div>
+      <p class="label">¿Qué vas a vivir?</p>
+      <h2 class="section-title">Un día diseñado para que <em>sientas</em> algo distinto</h2>
+      <p class="section-body">No es otro evento de "motivación". Es una experiencia real, íntima y cuidada en cada detalle — para que te vayas diferente a como llegaste.</p>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-card__icon">🌸</div>
+          <div class="exp-card__title">Brunch Garden</div>
+          <div class="exp-card__desc">Mesa bonita, comida que nutre y espacio para sentarte sin apuro. Porque mereces comer tranquila por una vez.</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">🎙️</div>
+          <div class="exp-card__title">Charlas que te mueven</div>
+          <div class="exp-card__desc">Fitness, salud mental, alimentación y fe. Sin filtros, sin poses — solo conversaciones reales de mujer a mujer.</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">🧘‍♀️</div>
+          <div class="exp-card__title">Momento para ti</div>
+          <div class="exp-card__desc">Una actividad de bienestar guiada para que te detengas, respires y recuerdes quién eres cuando no estás cuidando a todos.</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">🤍</div>
+          <div class="exp-card__title">Comunidad real</div>
+          <div class="exp-card__desc">Mujeres que entienden tu camino sin que tengas que explicarlo. Conexiones que duran más allá del evento.</div>
+        </div>
+      </div>
+    </div>
+    <div class="exp-mosaic">
+      <div class="exp-mosaic__item"><img src="/assets/shot_on_iPhone_202604041321.png" alt="Mommy Garden Brunch"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/Latina_women_in_202604041256.png" alt="Mujeres en el evento"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/Latina_women_in_202604041256 (1).png" alt="Mujeres en el evento"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/realistic_candid_photo_202604041322.png" alt="Momento de conexión"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/realistic_candid_photo_202604041323.png" alt="Experiencia del evento"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/candid_photo_of_202604041357.png" alt="Comunidad GabiFit"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/quiero_que_le_202604041359.png" alt="Bienestar y conexión"/></div>
+      <div class="exp-mosaic__item"><img src="/assets/slight_grain,_subtle_202604041400.png" alt="Tarde de bienestar"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DRESS CODE ══ -->
+<section class="dresscode" id="vestimenta">
+  <div class="container dresscode__inner">
+    <div class="dresscode__content">
+      <p class="label">Código de vestimenta</p>
+      <h2 class="section-title">Ven lista para <em>brillar y moverte.</em></h2>
+      <p class="dresscode__sub">Ropa deportiva en uno de los tres colores oficiales. Así todas llegamos con la misma vibra — cómodas, bonitas y listas para vivir algo que no olvidarán. 🌸</p>
+      <div class="dresscode__palette">
+        <div class="palette-chip"><span class="palette-chip__dot" style="background:#9B9DE0;"></span><span class="palette-chip__label">Lavanda</span></div>
+        <div class="palette-chip"><span class="palette-chip__dot" style="background:#EDE898;"></span><span class="palette-chip__label">Amarillo Mantequilla</span></div>
+        <div class="palette-chip"><span class="palette-chip__dot" style="background:#F4A8C0;"></span><span class="palette-chip__label">Rosa Baby</span></div>
+      </div>
+      <div class="dresscode__rules">
+        <div class="dresscode__rules-title"><span>✨</span> Guía rápida</div>
+        <div class="dresscode__rules-list">
+          <div class="dresscode__rule"><div class="dresscode__rule-dot"></div><span><strong style="color:#fff;">Ropa deportiva</strong> — leggings, top, sports bra, shorts o conjunto de gym.</span></div>
+          <div class="dresscode__rule"><div class="dresscode__rule-dot"></div><span><strong style="color:#fff;">Uno de los tres colores</strong> — puedes usar solo uno o mezclarlos.</span></div>
+          <div class="dresscode__rule"><div class="dresscode__rule-dot"></div><span><strong style="color:#fff;">Tenis cómodos</strong> — hay actividades de movimiento incluidas.</span></div>
+          <div class="dresscode__rule"><div class="dresscode__rule-dot"></div><span><strong style="color:#fff;">Accesorios libres</strong> — aretes, diademas, tu toque personal. ¡Venís como quieras!</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="dresscode__video-wrap">
+      <div class="dresscode__video-frame">
+        <video autoplay loop muted playsinline class="dresscode__video">
+          <source src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1775397828/estilo_de_vestimenta_pbzpqz.mp4" type="video/mp4"/>
+        </video>
+        <div class="dresscode__video-glow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKETS ══ -->
+<section class="tickets" id="tickets">
+  <div class="container">
+    <div class="tickets__header">
+      <p class="label">Reserva tu espacio</p>
+      <h2 class="section-title">Este espacio no espera.<br/><em>Tú tampoco deberías.</em></h2>
+      <p class="section-body" style="margin-inline:auto;text-align:center;margin-top:0.75rem;">Un solo tipo de entrada. Una sola experiencia. Completa.</p>
+    </div>
+    <div class="ticket-card">
+      <div class="ticket-card__top">
+        <div class="ticket-card__label">Entrada General · Mommy Garden Brunch</div>
+        <div class="ticket-card__price"><sup>$</sup>2,500 <span style="font-size:0.45em;font-weight:600;opacity:0.75;">DOP</span></div>
+        <div class="ticket-card__price-note">Pago por transferencia · Cupo confirmado al recibir comprobante</div>
+      </div>
+      <div class="ticket-card__body">
+        <div class="ticket-card__alert">🌸 Cupos muy limitados — No dejes pasar esto</div>
+        <ul class="ticket-card__list">
+          <li>Brunch garden completo incluido</li>
+          <li>Charlas con las 4 invitadas en vivo</li>
+          <li>Actividad de bienestar guiada</li>
+          <li>Ambiente garden de ensueño</li>
+          <li>Comunidad de mujeres extraordinarias</li>
+          <li>Sorpresas del evento 🌸</li>
+        </ul>
+        <a href="https://wa.me/18098939904?text=Hola%20Gabi%20%2C%20Quiero%20vivir%20esa%20experience%20con%20todas%20las%20chicas%20apuntame" target="_blank" rel="noopener noreferrer" class="btn btn-yellow btn-lg ticket-card__cta">
+          Reservar mi entrada por WhatsApp →
+        </a>
+        <p class="ticket-card__footnote">Al hacer clic irás a WhatsApp directo con Gaby para coordinar tu reserva.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq__header">
+      <p class="label">Preguntas frecuentes</p>
+      <h2 class="section-title">¿Tienes dudas? <em>Normal.</em></h2>
+    </div>
+    <div class="faq__list">
+      <div class="faq-item">
+        <button class="faq-item__q" onclick="toggleFaq(this)">
+          ¿Cómo confirmo que mi cupo quedó reservado?
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__a">Escríbele a Gaby por WhatsApp, ella te envía los detalles del pago y cuando recibe el comprobante de transferencia tu cupo queda confirmado. Es así de sencillo. Los cupos son limitados así que te recomendamos no esperar mucho.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__q" onclick="toggleFaq(this)">
+          ¿Para quién es este evento exactamente?
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__a">Para mamás y mujeres que quieren priorizarse. No tienes que estar en tu mejor momento físico ni tener todo resuelto. Si sientes que llevas tiempo poniéndote de última, este evento es para ti. Venís tal como estás.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__q" onclick="toggleFaq(this)">
+          ¿Qué debo llevar?
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__a">Solo tu mejor energía — el brunch está incluido. Ropa cómoda y bonita (es un brunch garden 🌸). Si quieres, trae un cuaderno para anotar. Todos los detalles de logística se comparten cuando confirmas tu reserva.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__q" onclick="toggleFaq(this)">
+          ¿Qué incluye el precio de la entrada?
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__a">El precio de $2,500 pesos incluye todo: el brunch garden completo con comida y bebidas, las charlas en vivo con las 4 invitadas, la actividad de bienestar guiada y acceso a la experiencia completa del evento. No hay costos adicionales.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-item__q" onclick="toggleFaq(this)">
+          ¿Qué pasa si no puedo ir después de reservar?
+          <span class="faq-item__icon">+</span>
+        </button>
+        <div class="faq-item__a">Por la naturaleza íntima del evento y los cupos limitados, los pagos no tienen reembolso. Sin embargo, puedes transferir tu entrada a otra persona. Escríbele a Gaby y lo coordinamos sin problema.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__logo">
+      <img src="/assets/logo-yellow.png" alt="GabiFit"/>
+    </div>
+    <p class="footer__tagline">"Hoy te eliges a ti." 🌸</p>
+    <div class="footer__social">
+      <a href="https://www.instagram.com/gabifitrd" target="_blank" rel="noopener noreferrer" aria-label="Instagram @gabifitrd">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer__copy">© 2026 GabiFit. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+// ── Navbar scroll ──
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Carousel ──
+var current = 0;
+var total = 4;
+
+function updateCarousel() {
+  var slides = document.getElementById('carousel-slides');
+  slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+  // Update all dots sets
+  document.querySelectorAll('.slide__dots').forEach(function(container) {
+    container.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'slide__dot' + (i === current ? ' active' : '');
+      dot.setAttribute('aria-label', 'Ir a invitada ' + (i + 1));
+      (function(idx) { dot.addEventListener('click', function() { current = idx; updateCarousel(); }); })(i);
+      container.appendChild(dot);
+    }
+  });
+  // Update nav button states
+  document.querySelectorAll('[onclick="changeSlide(-1)"]').forEach(function(btn) { btn.disabled = current === 0; });
+  document.querySelectorAll('[onclick="changeSlide(1)"]').forEach(function(btn) { btn.disabled = current === total - 1; });
+}
+
+function changeSlide(dir) {
+  current = Math.max(0, Math.min(total - 1, current + dir));
+  updateCarousel();
+}
+
+// Touch swipe
+var touchStartX = 0;
+document.getElementById('carousel').addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.getElementById('carousel').addEventListener('touchend', function(e) {
+  var diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+});
+
+// Init carousel
+updateCarousel();
+
+// ── FAQ accordion ──
+function toggleFaq(btn) {
+  var item = btn.closest('.faq-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

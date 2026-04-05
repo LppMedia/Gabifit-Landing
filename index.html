@@ -177,222 +177,88 @@
 </div>
 </div>
 </section>
+
+<!-- ═══════════════════════════════════
+     VIDEO TESTIMONIALS
+═══════════════════════════════════ -->
 <section class="py-32 px-4 md:px-12 bg-brand-black">
 <div class="mb-16 border-l-8 border-brand-neon pl-8">
 <h2 class="text-6xl md:text-9xl mb-4">HISTORIAS DE</h2>
 <h2 class="text-6xl md:text-9xl text-brand-neon italic">MADRES REALES</h2>
 </div>
-<!-- Testimonial Slider -->
-<div id="tslider" class="relative w-full min-h-[750px] md:min-h-[700px] overflow-hidden p-0 md:p-4">
-  <style>
-    #tslider .ts-img-wrap { position:relative; overflow:hidden; border-radius:12px; background: rgba(255,255,255,0.03); }
-    #tslider .ts-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; border-radius:12px; }
-    #tslider .ts-slide.ts-enter-down  { animation: tsSlideInDown  0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-slide.ts-enter-up    { animation: tsSlideInUp    0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-slide.ts-exit-up     { animation: tsSlideOutUp   0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-slide.ts-exit-down   { animation: tsSlideOutDown 0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-text.ts-text-enter-right { animation: tsTextInRight  0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-text.ts-text-enter-left  { animation: tsTextInLeft   0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-text.ts-text-exit-left   { animation: tsTextOutLeft  0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    #tslider .ts-text.ts-text-exit-right  { animation: tsTextOutRight 0.6s cubic-bezier(.4,0,.2,1) forwards; }
-    @keyframes tsSlideInDown  { from { transform:translateY(100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
-    @keyframes tsSlideInUp    { from { transform:translateY(-100%); opacity:0; } to { transform:translateY(0); opacity:1; } }
-    @keyframes tsSlideOutUp   { from { transform:translateY(0); opacity:1; } to { transform:translateY(-100%); opacity:0; } }
-    @keyframes tsSlideOutDown { from { transform:translateY(0); opacity:1; } to { transform:translateY(100%); opacity:0; } }
-    @keyframes tsTextInRight  { from { transform:translateX(50px); opacity:0; } to { transform:translateX(0); opacity:1; } }
-    @keyframes tsTextInLeft   { from { transform:translateX(-50px); opacity:0; } to { transform:translateX(0); opacity:1; } }
-    @keyframes tsTextOutLeft  { from { transform:translateX(0); opacity:1; } to { transform:translateX(-50px); opacity:0; } }
-    @keyframes tsTextOutRight { from { transform:translateX(0); opacity:1; } to { transform:translateX(50px); opacity:0; } }
-  </style>
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 h-full">
-    <!-- Left: pagination + thumbnails (desktop only order) -->
-    <div class="md:col-span-3 flex flex-col justify-between order-3 md:order-1">
-      <div class="flex flex-row md:flex-col justify-between md:justify-start gap-4">
-        <span id="ts-counter" class="text-sm opacity-60 font-mono">01 / 03</span>
-        <h2 class="text-sm font-medium tracking-widest uppercase hidden md:block opacity-60" style="writing-mode:vertical-rl;transform:rotate(180deg)">Reviews</h2>
-      </div>
-      <div id="ts-thumbs" class="flex gap-2 mt-4 md:mt-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+  <!-- VIDEO 1: ELAINE ZAPATA (real) -->
+  <div class="brutalist-border brutalist-shadow-neon flex flex-col overflow-hidden">
+    <div class="relative bg-black overflow-hidden" style="aspect-ratio:9/16;max-height:520px;">
+      <video class="absolute inset-0 w-full h-full object-cover" controls playsinline preload="metadata">
+        <source src="./asset/elaine-zapata.mp4" type="video/mp4"/>
+      </video>
     </div>
-    <!-- Center: main image -->
-    <div class="md:col-span-4 order-1 md:order-2">
-      <div id="ts-img-wrap" class="ts-img-wrap w-full h-[300px] md:h-[600px]">
-        <img id="ts-img-current" class="ts-slide" src="" alt="" />
-      </div>
-    </div>
-    <!-- Mobile-only: nav buttons right under the image -->
-    <div class="flex md:hidden items-center gap-3 order-2">
-      <button id="ts-prev-m" aria-label="Previous" class="w-12 h-12 rounded-full border-2 border-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black transition-colors duration-200 cursor-pointer" style="flex-shrink:0;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <button id="ts-next-m" aria-label="Next" class="w-12 h-12 rounded-full bg-brand-neon text-brand-black flex items-center justify-center hover:opacity-90 transition-opacity duration-200 cursor-pointer" style="flex-shrink:0;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-    </div>
-    <!-- Right: text + navigation (desktop) -->
-    <div class="md:col-span-5 flex flex-col justify-between md:pl-8 order-4 md:order-3">
-      <div class="relative overflow-hidden pt-2 md:pt-16" style="min-height:160px;">
-        <div id="ts-text" class="ts-text">
-          <p id="ts-affil" class="text-sm font-medium opacity-60 font-mono uppercase"></p>
-          <h3 id="ts-name" class="text-xl font-heading mt-1 text-brand-neon"></h3>
-          <blockquote id="ts-quote" class="mt-4 text-xl md:text-3xl font-mono normal-case leading-snug italic opacity-90"></blockquote>
-        </div>
-      </div>
-      <div class="hidden md:flex items-center gap-3 mt-0">
-        <button id="ts-prev" aria-label="Previous" class="w-12 h-12 rounded-full border-2 border-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black transition-colors duration-200 cursor-pointer" style="flex-shrink:0;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button id="ts-next" aria-label="Next" class="w-12 h-12 rounded-full bg-brand-neon text-brand-black flex items-center justify-center hover:opacity-90 transition-opacity duration-200 cursor-pointer" style="flex-shrink:0;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
+    <div class="p-6 bg-brand-black flex-1">
+      <p class="text-brand-neon font-mono text-sm mb-1 uppercase tracking-widest">Madre · Testimonio Real</p>
+      <h3 class="text-2xl font-heading text-brand-white mb-3">ELAINE ZAPATA</h3>
+      <blockquote class="font-mono text-base normal-case italic opacity-80 leading-snug">"El método Gabifit me devolvió no solo mi figura, sino mi confianza. Los resultados que logré en solo 3 meses me dejaron sin palabras."</blockquote>
     </div>
   </div>
-</div>
-<script>
-(function() {
-  var reviews = [
-    {
-      name: "CARLA M.",
-      affiliation: "MADRE DE 2",
-      quote: "\u201cPOR FIN ENTIENDO C\u00d3MO RECUPERAR MI CUERPO DESPU\u00c9S DE MI SEGUNDO BEB\u00c9. LA COMUNIDAD ES MI MOTOR DIARIO.\u201d",
-      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183057_fbabox.png",
-      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183057_fbabox.png"
-    },
-    {
-      name: "LAURA S.",
-      affiliation: "MAM\u00c1 DE UN TODDLER",
-      quote: "\u201cGABI ENTIENDE LO QUE PASAMOS PORQUE ELLA TAMBI\u00c9N ES MAM\u00c1. CIENCIA APLICADA A NUESTRO NUEVO CUERPO.\u201d",
-      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183035_aoqru8.png",
-      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183035_aoqru8.png"
-    },
-    {
-      name: "MARINA V.",
-      affiliation: "MADRE PRIMERIZA",
-      quote: "\u201cDEJ\u00c9 DE CONTAR CALOR\u00cdAS Y EMPEC\u00c9 A SANAR MI METABOLISMO POST-PARTO. ME SIENTO MEJOR QUE A LOS 20.\u201d",
-      imageSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183046_otbc8e.png",
-      thumbnailSrc: "https://res.cloudinary.com/dmkx2uowd/image/upload/v1774481478/Screenshot_2026-03-25_183046_otbc8e.png"
-    }
-  ];
 
-  var current = 0;
-  var animating = false;
+  <!-- VIDEO 2: SOFÍA MEJÍA (placeholder) -->
+  <div class="flex flex-col overflow-hidden" style="border:4px solid rgba(255,255,255,0.35);box-shadow:10px 10px 0px rgba(196,181,253,0.5);">
+    <div class="relative flex items-center justify-center overflow-hidden" style="aspect-ratio:9/16;max-height:520px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);">
+      <div class="absolute inset-0" style="background-image:radial-gradient(circle,rgba(196,181,253,0.12) 1px,transparent 1px);background-size:24px 24px;"></div>
+      <div class="relative z-10 flex flex-col items-center gap-4 text-center px-8">
+        <div class="w-20 h-20 rounded-full border-4 flex items-center justify-center" style="border-color:#c4b5fd;opacity:0.65;">
+          <svg width="32" height="32" fill="#c4b5fd" style="margin-left:4px;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="font-mono text-xs tracking-widest uppercase" style="color:rgba(196,181,253,0.6);">Video próximamente</span>
+      </div>
+    </div>
+    <div class="p-6 bg-brand-black flex-1">
+      <p class="font-mono text-sm mb-1 uppercase tracking-widest" style="color:rgba(196,181,253,0.65);">Mamá de gemelos</p>
+      <h3 class="text-2xl font-heading text-brand-white mb-3" style="opacity:0.65;">SOFÍA MEJÍA</h3>
+      <blockquote class="font-mono text-base normal-case italic leading-snug" style="opacity:0.45;">"Nunca creí que después de tener gemelos podría recuperar mi cuerpo. Gabifit me demostró que sí es posible con el método correcto."</blockquote>
+    </div>
+  </div>
 
-  var imgCurrent = document.getElementById('ts-img-current');
-  var textEl = document.getElementById('ts-text');
-  var affilEl = document.getElementById('ts-affil');
-  var nameEl = document.getElementById('ts-name');
-  var quoteEl = document.getElementById('ts-quote');
-  var counterEl = document.getElementById('ts-counter');
-  var thumbsEl = document.getElementById('ts-thumbs');
+  <!-- VIDEO 3: ANDREA LÓPEZ (placeholder) -->
+  <div class="flex flex-col overflow-hidden" style="border:4px solid rgba(255,255,255,0.35);box-shadow:10px 10px 0px rgba(207,241,84,0.4);">
+    <div class="relative flex items-center justify-center overflow-hidden" style="aspect-ratio:9/16;max-height:520px;background:linear-gradient(135deg,#0d1f0d 0%,#1a2e1a 50%,#0a1f12 100%);">
+      <div class="absolute inset-0" style="background-image:radial-gradient(circle,rgba(207,241,84,0.12) 1px,transparent 1px);background-size:24px 24px;"></div>
+      <div class="relative z-10 flex flex-col items-center gap-4 text-center px-8">
+        <div class="w-20 h-20 rounded-full border-4 flex items-center justify-center" style="border-color:#cff154;opacity:0.65;">
+          <svg width="32" height="32" fill="#cff154" style="margin-left:4px;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="font-mono text-xs tracking-widest uppercase" style="color:rgba(207,241,84,0.6);">Video próximamente</span>
+      </div>
+    </div>
+    <div class="p-6 bg-brand-black flex-1">
+      <p class="font-mono text-sm mb-1 uppercase tracking-widest" style="color:rgba(207,241,84,0.65);">Madre primeriza · 8 meses post-parto</p>
+      <h3 class="text-2xl font-heading text-brand-white mb-3" style="opacity:0.65;">ANDREA LÓPEZ</h3>
+      <blockquote class="font-mono text-base normal-case italic leading-snug" style="opacity:0.45;">"Empecé el programa sintiéndome completamente perdida. Ahora me siento más fuerte que antes del embarazo, física y mentalmente."</blockquote>
+    </div>
+  </div>
 
-  function pad(n) { return String(n).padStart(2,'0'); }
+  <!-- VIDEO 4: VALENTINA PÉREZ (placeholder) -->
+  <div class="flex flex-col overflow-hidden" style="border:4px solid rgba(255,255,255,0.35);box-shadow:10px 10px 0px rgba(255,255,255,0.2);">
+    <div class="relative flex items-center justify-center overflow-hidden" style="aspect-ratio:9/16;max-height:520px;background:linear-gradient(135deg,#1f0d1f 0%,#2e1a2e 50%,#1a0d2e 100%);">
+      <div class="absolute inset-0" style="background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1px,transparent 1px);background-size:24px 24px;"></div>
+      <div class="relative z-10 flex flex-col items-center gap-4 text-center px-8">
+        <div class="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center" style="opacity:0.4;">
+          <svg width="32" height="32" fill="white" style="margin-left:4px;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="font-mono text-xs tracking-widest text-white uppercase" style="opacity:0.35;">Video próximamente</span>
+      </div>
+    </div>
+    <div class="p-6 bg-brand-black flex-1">
+      <p class="text-brand-white font-mono text-sm mb-1 uppercase tracking-widest" style="opacity:0.45;">Mamá de 3 · Emprendedora</p>
+      <h3 class="text-2xl font-heading text-brand-white mb-3" style="opacity:0.65;">VALENTINA PÉREZ</h3>
+      <blockquote class="font-mono text-base normal-case italic leading-snug" style="opacity:0.45;">"La comunidad Gabifit es lo que más valoro. No estás sola en este proceso. Hay mujeres reales que te apoyan cada día."</blockquote>
+    </div>
+  </div>
 
-  function renderThumbs() {
-    thumbsEl.innerHTML = '';
-    for (var i = 0; i < reviews.length; i++) {
-      if (i === current) continue;
-      (function(idx) {
-        var btn = document.createElement('button');
-        btn.style.cssText = 'overflow:hidden;border-radius:6px;width:64px;height:80px;opacity:0.65;transition:opacity 0.3s;flex-shrink:0;border:none;padding:0;cursor:pointer;';
-        btn.setAttribute('aria-label', 'Ver reseña de ' + reviews[idx].name);
-        btn.onmouseenter = function(){ this.style.opacity='1'; };
-        btn.onmouseleave = function(){ this.style.opacity='0.65'; };
-        var img = document.createElement('img');
-        img.src = reviews[idx].thumbnailSrc;
-        img.alt = reviews[idx].name;
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top;';
-        btn.appendChild(img);
-        btn.addEventListener('click', function(){ goTo(idx, idx > current ? 'right' : 'left'); });
-        thumbsEl.appendChild(btn);
-      })(i);
-    }
-  }
-
-  function goTo(next, direction) {
-    if (animating || next === current) return;
-    animating = true;
-
-    var exitImgClass = direction === 'right' ? 'ts-exit-up' : 'ts-exit-down';
-    var enterImgClass = direction === 'right' ? 'ts-enter-down' : 'ts-enter-up';
-    var exitTextClass = direction === 'right' ? 'ts-text-exit-left' : 'ts-text-exit-right';
-    var enterTextClass = direction === 'right' ? 'ts-text-enter-right' : 'ts-text-enter-left';
-
-    // Animate out current image
-    imgCurrent.classList.add(exitImgClass);
-    textEl.classList.add(exitTextClass);
-
-    setTimeout(function() {
-      // Swap data
-      current = next;
-      imgCurrent.src = reviews[current].imageSrc;
-      imgCurrent.alt = reviews[current].name;
-      affilEl.textContent = reviews[current].affiliation;
-      nameEl.textContent = reviews[current].name;
-      quoteEl.textContent = reviews[current].quote;
-      counterEl.textContent = pad(current + 1) + ' / ' + pad(reviews.length);
-
-      // Remove exit, add enter
-      imgCurrent.classList.remove(exitImgClass);
-      textEl.classList.remove(exitTextClass);
-      imgCurrent.classList.add(enterImgClass);
-      textEl.classList.add(enterTextClass);
-
-      renderThumbs();
-
-      setTimeout(function() {
-        imgCurrent.classList.remove(enterImgClass);
-        textEl.classList.remove(enterTextClass);
-        animating = false;
-      }, 650);
-    }, 550);
-  }
-
-  function bindNav(nextId, prevId) {
-    document.getElementById(nextId).addEventListener('click', function() {
-      goTo((current + 1) % reviews.length, 'right');
-    });
-    document.getElementById(prevId).addEventListener('click', function() {
-      goTo((current - 1 + reviews.length) % reviews.length, 'left');
-    });
-  }
-  bindNav('ts-next', 'ts-prev');
-  bindNav('ts-next-m', 'ts-prev-m');
-
-  // Initialize
-  imgCurrent.src = reviews[0].imageSrc;
-  imgCurrent.alt = reviews[0].name;
-  imgCurrent.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:12px;';
-  affilEl.textContent = reviews[0].affiliation;
-  nameEl.textContent = reviews[0].name;
-  quoteEl.textContent = reviews[0].quote;
-  counterEl.textContent = '01 / ' + pad(reviews.length);
-  renderThumbs();
-})();
-</script>
-</section>
-<section class="py-24 border-y-8 border-brand-white" id="pricing">
-<div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
-<div class="lg:col-span-6">
-<h2 class="text-6xl md:text-8xl mb-12">QUÉ INCLUYE LA COMUNIDAD</h2>
-<ul class="space-y-4 text-2xl md:text-3xl font-heading">
-<li class="flex items-center gap-4 bg-brand-white text-brand-black p-2"><span class="bg-brand-black text-brand-white px-3">X</span> VIDEO MASTERCLASS POST-PARTO</li>
-<li class="flex items-center gap-4 border-2 border-brand-white p-2">GUÍA NUTRICIÓN CICLO FEMENINO</li>
-<li class="flex items-center gap-4 border-2 border-brand-white p-2">PROTOCOLO ADAPTADO A TU TIEMPO</li>
-<li class="flex items-center gap-4 border-2 border-brand-white p-2">MENÚS DE RECUPERACIÓN CELULAR</li>
-<li class="flex items-center gap-4 bg-brand-purple text-brand-black p-2"><span class="bg-brand-black text-brand-white px-3">X</span> ACCESO A COMUNIDAD GABIFIT</li>
-<li class="flex items-center gap-4 border-2 border-brand-white p-2">SOPORTE DIRECTO POR WHATSAPP</li>
-</ul>
-</div>
-<div class="lg:col-span-6 bg-brand-neon p-12 brutalist-shadow-white flex flex-col justify-center items-center text-brand-black">
-<span class="text-4xl line-through mb-2 opacity-60">$147 USD</span>
-<span class="text-[120px] leading-none font-heading">$97</span>
-<span class="text-2xl font-bold mb-12 font-mono">PAGO ÚNICO / ACCESO DE POR VIDA</span>
-<button class="w-full bg-brand-black text-brand-neon py-8 text-4xl font-heading hover:bg-brand-white transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.8)] hover:-translate-y-1 cursor-pointer">
-                    EMPEZAR MI TRANSFORMACIÓN
-                </button>
-</div>
 </div>
 </section>
+
 <section class="py-32 px-4 md:px-12">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 <div class="lg:col-span-5 brutalist-border brutalist-shadow-purple -rotate-2 overflow-hidden">
@@ -441,6 +307,34 @@
 </div>
 </div>
 </section>
+
+<!-- ═══════════════════════════════════
+     CHECKOUT / PRICING  (above footer)
+═══════════════════════════════════ -->
+<section class="py-24 border-y-8 border-brand-white" id="pricing">
+<div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-6">
+<h2 class="text-6xl md:text-8xl mb-12">QUÉ INCLUYE LA COMUNIDAD</h2>
+<ul class="space-y-4 text-2xl md:text-3xl font-heading">
+<li class="flex items-center gap-4 bg-brand-white text-brand-black p-2"><span class="bg-brand-black text-brand-white px-3">X</span> VIDEO MASTERCLASS POST-PARTO</li>
+<li class="flex items-center gap-4 border-2 border-brand-white p-2">GUÍA NUTRICIÓN CICLO FEMENINO</li>
+<li class="flex items-center gap-4 border-2 border-brand-white p-2">PROTOCOLO ADAPTADO A TU TIEMPO</li>
+<li class="flex items-center gap-4 border-2 border-brand-white p-2">MENÚS DE RECUPERACIÓN CELULAR</li>
+<li class="flex items-center gap-4 bg-brand-purple text-brand-black p-2"><span class="bg-brand-black text-brand-white px-3">X</span> ACCESO A COMUNIDAD GABIFIT</li>
+<li class="flex items-center gap-4 border-2 border-brand-white p-2">SOPORTE DIRECTO POR WHATSAPP</li>
+</ul>
+</div>
+<div class="lg:col-span-6 bg-brand-neon p-12 brutalist-shadow-white flex flex-col justify-center items-center text-brand-black">
+<span class="text-4xl line-through mb-2 opacity-60">$147 USD</span>
+<span class="text-[120px] leading-none font-heading">$97</span>
+<span class="text-2xl font-bold mb-12 font-mono">PAGO ÚNICO / ACCESO DE POR VIDA</span>
+<button class="w-full bg-brand-black text-brand-neon py-8 text-4xl font-heading hover:bg-brand-white transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.8)] hover:-translate-y-1 cursor-pointer">
+                    EMPEZAR MI TRANSFORMACIÓN
+                </button>
+</div>
+</div>
+</section>
+
 <footer class="bg-brand-black p-12 md:p-24 border-t-8 border-brand-white">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
 <div>
