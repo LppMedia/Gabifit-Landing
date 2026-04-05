@@ -3,4 +3,27 @@
 _agents/
 tmp/
 node_modules/
+
+# Next.js
+.next/
+out/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Carpeta de trabajo previa (migrada al root)
+nextjs-ready/
+
+# Videos grandes (>50MB) — usar Cloudinary
 asset/elaine-zapata.mp4
+public/testimonios/*.mp4
+
