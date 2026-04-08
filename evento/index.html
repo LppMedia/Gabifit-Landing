@@ -179,6 +179,16 @@ a  { text-decoration: none; color: inherit; }
 .dresscode__video { display: block; width: 100%; height: auto; border-radius: var(--radius-xl); }
 .dresscode__video-glow { position: absolute; inset: 0; border-radius: var(--radius-xl); background: linear-gradient(to bottom, transparent 60%, rgba(26,27,46,0.35) 100%); pointer-events: none; }
 
+/* VENUE */
+.venue { padding-block: 6rem; background: var(--beige-light); }
+.venue__header { text-align: center; margin-bottom: 3rem; }
+.venue__chips { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1.5rem; }
+.venue__chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--white); border: 1.5px solid var(--beige-dark); border-radius: 100px; padding: 0.55rem 1.25rem; font-size: 0.875rem; font-weight: 500; color: var(--navy); box-shadow: var(--shadow-sm); }
+.venue__gallery { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.25rem; max-width: 900px; margin-inline: auto; }
+.venue__gallery-main, .venue__gallery-side { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.venue__gallery-main img, .venue__gallery-side img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 300px; }
+@media (max-width: 640px) { .venue__gallery { grid-template-columns: 1fr; } .venue__gallery-main img, .venue__gallery-side img { min-height: 220px; } }
+
 /* TICKETS */
 .tickets { padding-block: 6rem; background: var(--beige); }
 .tickets__header { text-align: center; margin-bottom: 3.5rem; }
@@ -248,7 +258,7 @@ a  { text-decoration: none; color: inherit; }
   <div class="container hero__inner">
     <div>
       <div class="hero__eyebrow">
-        <span class="pill pill--lilac">🌸 Evento especial · Abril 2026</span>
+        <span class="pill pill--lilac">🌸 Evento especial · Mayo 2026</span>
         <span class="pill pill--yellow">Cupos limitados</span>
       </div>
       <h1 class="hero__title">
@@ -262,8 +272,8 @@ a  { text-decoration: none; color: inherit; }
         quién eres más allá de la maternidad.
       </p>
       <div class="hero__meta">
-        <div class="hero__meta-chip">📅 Fecha por confirmar</div>
-        <div class="hero__meta-chip">📍 Lugar por confirmar</div>
+        <div class="hero__meta-chip">📅 24 de Mayo, 2026</div>
+        <div class="hero__meta-chip">📍 Monarca Bistro · Santiago</div>
         <div class="hero__meta-chip">🌿 4 invitadas especiales</div>
       </div>
       <div class="hero__actions">
@@ -529,6 +539,30 @@ a  { text-decoration: none; color: inherit; }
   </div>
 </section>
 
+<!-- ══ VENUE ══ -->
+<section class="venue" id="lugar">
+  <div class="container">
+    <div class="venue__header">
+      <p class="label">El lugar</p>
+      <h2 class="section-title">Un espacio tan bonito<br><em>como la experiencia.</em></h2>
+      <p class="section-body" style="margin-inline:auto;text-align:center;margin-top:0.75rem;">Monarca Bistro nos abre sus puertas para crear el ambiente perfecto — garden, íntimo y lleno de detalles.</p>
+      <div class="venue__chips">
+        <div class="venue__chip">📍 Monarca Bistro</div>
+        <div class="venue__chip">🗺️ Av. Benito Juárez N.62, Villa Olga, Santiago</div>
+        <div class="venue__chip">📅 24 de Mayo, 2026</div>
+      </div>
+    </div>
+    <div class="venue__gallery">
+      <div class="venue__gallery-main">
+        <img src="/assets/Restaurantgabifit.jpg" alt="Monarca Bistro — Lugar del evento"/>
+      </div>
+      <div class="venue__gallery-side">
+        <img src="/assets/Gabifitlugarevento.jpg" alt="Espacio garden del evento"/>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ TICKETS ══ -->
 <section class="tickets" id="tickets">
   <div class="container">
@@ -546,12 +580,13 @@ a  { text-decoration: none; color: inherit; }
       <div class="ticket-card__body">
         <div class="ticket-card__alert">🌸 Cupos muy limitados — No dejes pasar esto</div>
         <ul class="ticket-card__list">
-          <li>Brunch garden completo incluido</li>
-          <li>Charlas con las 4 invitadas en vivo</li>
+          <li>Brunch garden completo (1 entrada + 1 plato fuerte)</li>
+          <li>Charlas en vivo con las 4 invitadas</li>
+          <li>Rifa exclusiva del evento 🎁</li>
           <li>Actividad de bienestar guiada</li>
-          <li>Ambiente garden de ensueño</li>
+          <li>Acceso a la experiencia completa</li>
           <li>Comunidad de mujeres extraordinarias</li>
-          <li>Sorpresas del evento 🌸</li>
+          <li>Llegas, disfrutas y te vas transformada 🌸</li>
         </ul>
         <a href="https://wa.me/18098939904?text=Hola%20Gabi%20%2C%20Quiero%20vivir%20esa%20experience%20con%20todas%20las%20chicas%20apuntame" target="_blank" rel="noopener noreferrer" class="btn btn-yellow btn-lg ticket-card__cta">
           Reservar mi entrada por WhatsApp →
@@ -596,7 +631,7 @@ a  { text-decoration: none; color: inherit; }
           ¿Qué incluye el precio de la entrada?
           <span class="faq-item__icon">+</span>
         </button>
-        <div class="faq-item__a">El precio de $2,500 pesos incluye todo: el brunch garden completo con comida y bebidas, las charlas en vivo con las 4 invitadas, la actividad de bienestar guiada y acceso a la experiencia completa del evento. No hay costos adicionales.</div>
+        <div class="faq-item__a">El precio de $2,500 pesos incluye todo: el brunch garden completo (1 entrada y 1 plato fuerte), las charlas en vivo con las 4 invitadas, una rifa exclusiva, la actividad de bienestar guiada y acceso a la experiencia completa del evento. No hay costos adicionales — llegas, disfrutas y te vas transformada.</div>
       </div>
       <div class="faq-item">
         <button class="faq-item__q" onclick="toggleFaq(this)">
