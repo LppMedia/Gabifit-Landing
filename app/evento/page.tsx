@@ -81,7 +81,7 @@ export default function MommyGardenBrunch() {
     },
     {
       q: "¿Qué incluye el precio de la entrada?",
-      a: "El precio de $2,500 pesos incluye todo: el brunch garden completo con comida y bebidas, las charlas en vivo con las 4 invitadas, la actividad de bienestar guiada y acceso a la experiencia completa del evento. No hay costos adicionales — llegas, disfrutas y te vas transformada.",
+      a: "El precio de $2,500 pesos incluye todo: el brunch garden completo (1 entrada y 1 plato fuerte), las charlas en vivo con las 4 invitadas, una rifa exclusiva, la actividad de bienestar guiada y acceso a la experiencia completa del evento. No hay costos adicionales — llegas, disfrutas y te vas transformada.",
     },
     {
       q: "¿Qué pasa si no puedo ir después de reservar?",
@@ -108,7 +108,7 @@ export default function MommyGardenBrunch() {
         <div className="container hero__inner">
           <div>
             <div className="hero__eyebrow">
-              <span className="pill pill--lilac">🌸 Evento especial · Abril 2026</span>
+              <span className="pill pill--lilac">🌸 Evento especial · Mayo 2026</span>
               <span className="pill pill--yellow">Cupos limitados</span>
             </div>
             <h1 className="hero__title">
@@ -124,8 +124,8 @@ export default function MommyGardenBrunch() {
               quién eres más allá de la maternidad.
             </p>
             <div className="hero__meta">
-              <div className="hero__meta-chip">📅 Fecha por confirmar</div>
-              <div className="hero__meta-chip">📍 Lugar por confirmar</div>
+              <div className="hero__meta-chip">📅 24 de Mayo, 2026</div>
+              <div className="hero__meta-chip">📍 Monarca Bistro · Santiago</div>
               <div className="hero__meta-chip">🌿 4 invitadas especiales</div>
             </div>
             <div className="hero__actions">
@@ -539,6 +539,34 @@ export default function MommyGardenBrunch() {
         </div>
       </section>
 
+      {/* ══ VENUE ══ */}
+      <section className="venue" id="lugar">
+        <div className="container">
+          <div className="venue__header">
+            <p className="label">El lugar</p>
+            <h2 className="section-title">
+              Un espacio tan bonito<br /><em>como la experiencia.</em>
+            </h2>
+            <p className="section-body" style={{ marginInline: "auto", textAlign: "center", marginTop: "0.75rem" }}>
+              Monarca Bistro nos abre sus puertas para crear el ambiente perfecto — garden, íntimo y lleno de detalles.
+            </p>
+            <div className="venue__chips">
+              <div className="venue__chip">📍 Monarca Bistro</div>
+              <div className="venue__chip">🗺️ Av. Benito Juárez N.62, Villa Olga, Santiago</div>
+              <div className="venue__chip">📅 24 de Mayo, 2026</div>
+            </div>
+          </div>
+          <div className="venue__gallery">
+            <div className="venue__gallery-main">
+              <img src="/assets/Restaurantgabifit.jpg" alt="Monarca Bistro — Lugar del evento" />
+            </div>
+            <div className="venue__gallery-side">
+              <img src="/assets/Gabifitlugarevento.jpg" alt="Espacio garden del evento" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ══ TICKETS ══ */}
       <section className="tickets" id="tickets">
         <div className="container">
@@ -583,12 +611,13 @@ export default function MommyGardenBrunch() {
                 🌸 Cupos muy limitados — No dejes pasar esto
               </div>
               <ul className="ticket-card__list">
-                <li>Brunch garden completo incluido</li>
-                <li>Charlas con las 4 invitadas en vivo</li>
+                <li>Brunch garden completo (1 entrada + 1 plato fuerte)</li>
+                <li>Charlas en vivo con las 4 invitadas</li>
+                <li>Rifa exclusiva del evento 🎁</li>
                 <li>Actividad de bienestar guiada</li>
-                <li>Ambiente garden de ensueño</li>
+                <li>Acceso a la experiencia completa</li>
                 <li>Comunidad de mujeres extraordinarias</li>
-                <li>Sorpresas del evento 🌸</li>
+                <li>Llegas, disfrutas y te vas transformada 🌸</li>
               </ul>
               <a
                 href={WA_LINK}
