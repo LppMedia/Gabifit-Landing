@@ -132,12 +132,18 @@ export default function GabifitLanding() {
           {/* VSL Video */}
           <div className="brutalist-border brutalist-shadow-neon mb-12 bg-black overflow-hidden relative">
             <div className="vsl-container">
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0&showinfo=0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Video de Gabifit"
-              />
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full h-auto block"
+                poster=""
+              >
+                <source
+                  src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776184097/gabi_vsl_zxmkja.mp4"
+                  type="video/mp4"
+                />
+              </video>
             </div>
           </div>
 
