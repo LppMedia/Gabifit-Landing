@@ -22,7 +22,7 @@ export default function VSLPlayer({ src }: { src: string }) {
         playsInline
         controls
         preload="auto"
-        className="w-full h-auto block"
+        style={{ display: "block", width: "100%", height: "auto" }}
       >
         <source src={src} type="video/mp4" />
       </video>
@@ -30,10 +30,10 @@ export default function VSLPlayer({ src }: { src: string }) {
       {muted && (
         <button
           onClick={unmute}
-          className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 cursor-pointer group"
+          className="absolute inset-0 flex flex-col items-center justify-center bg-black/50 cursor-pointer group"
           aria-label="Activar audio"
         >
-          <div className="bg-brand-neon text-black font-black text-xl md:text-2xl px-8 py-4 border-4 border-black shadow-[6px_6px_0px_#000] group-hover:translate-y-[-2px] transition-transform">
+          <div className="bg-brand-neon text-black font-black text-base md:text-xl px-5 py-3 md:px-8 md:py-4 border-4 border-black shadow-[6px_6px_0px_#000] group-hover:translate-y-[-2px] transition-transform text-center">
             🔊 CLICK PARA ACTIVAR AUDIO
           </div>
         </button>

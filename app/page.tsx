@@ -131,8 +131,10 @@ export default function GabifitLanding() {
       <header className="bg-brand-black">
         <div className="max-w-6xl mx-auto px-4 pb-24">
           {/* VSL Video */}
-          <div className="brutalist-border brutalist-shadow-neon mb-12 overflow-hidden">
-            <VSLPlayer src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776184097/gabi_vsl_zxmkja.mp4" />
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="brutalist-border brutalist-shadow-neon overflow-hidden">
+              <VSLPlayer src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776184097/gabi_vsl_zxmkja.mp4" />
+            </div>
           </div>
 
           {/* Headlines */}
@@ -464,8 +466,29 @@ export default function GabifitLanding() {
             </div>
           </div>
 
-          {/* Espacio para los próximos 3 videos — agrega aquí */}
-          {/* Video 2, 3, 4 se añaden con el mismo patrón */}
+          {/* ── Video 2: María Cristina ── */}
+          <div className="flex flex-col gap-6">
+            <div className="brutalist-border brutalist-shadow-neon overflow-hidden">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                className="w-full h-auto block"
+              >
+                <source src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776205653/Maria-cristina-testimonio-gabifit_xyxgxc.mov" type="video/mp4" />
+              </video>
+            </div>
+            <div className="border-l-4 border-brand-neon pl-6">
+              <blockquote className="text-lg md:text-xl font-mono normal-case italic opacity-90 leading-relaxed mb-4">
+                &ldquo;Duré tres años entrenando con Gaby — fue una experiencia maravillosa, llena de acompañamiento. Me levantaba a las 5 de la mañana y lo hacía feliz por cómo me sentía y cómo estaba mi cuerpo.&rdquo;
+              </blockquote>
+              <p className="font-heading text-brand-neon text-xl">MARÍA CRISTINA</p>
+              <p className="font-mono text-sm opacity-60 normal-case">3 años con Gabifit · Mamá postparto</p>
+            </div>
+          </div>
+
+          {/* Espacio para los próximos 2 videos — agrega aquí */}
+          {/* Video 3, 4 se añaden con el mismo patrón */}
         </div>
       </section>
 
