@@ -1,5 +1,6 @@
 import FAQAccordion from "./components/FAQAccordion";
 import TestimonialSlider from "./components/TestimonialSlider";
+import VSLPlayer from "./components/VSLPlayer";
 
 const PROMO_TEXT =
   "🔥 OFERTA DÍA DE LAS MADRES: ACCEDE POR SOLO $97 USD — PRECIO SUBE A $147 EL JUNIO 1 · ¡ÚLTIMOS CUPOS DISPONIBLES!";
@@ -130,21 +131,8 @@ export default function GabifitLanding() {
       <header className="bg-brand-black">
         <div className="max-w-6xl mx-auto px-4 pb-24">
           {/* VSL Video */}
-          <div className="brutalist-border brutalist-shadow-neon mb-12 bg-black overflow-hidden relative">
-            <div className="vsl-container">
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                className="w-full h-auto block"
-                poster=""
-              >
-                <source
-                  src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776184097/gabi_vsl_zxmkja.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            </div>
+          <div className="brutalist-border brutalist-shadow-neon mb-12 overflow-hidden">
+            <VSLPlayer src="https://res.cloudinary.com/dmkx2uowd/video/upload/q_auto/f_auto/v1776184097/gabi_vsl_zxmkja.mp4" />
           </div>
 
           {/* Headlines */}
